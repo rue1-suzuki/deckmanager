@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h2>イベント詳細</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>イベント名</th>
+        <td>{{ event.title }}</td>
+    </tr>
+    <tr>
+        <th>開催日</th>
+        <td>{{ event.date }}</td>
+    </tr>
+    <tr>
+        <th>主催者</th>
+        <td>{{ event.organizer.username }}</td>
+    </tr>
+    <tr>
+        <th>参加者へのメッセージ</th>
+        <td>
+            <p>{{ event.message | linebreaksbr }}</p>
+        </td>
+    </tr>
+    <tr>
+        <th>状態</th>
+        <td>{{ event.get_is_active_display }}</td>
+    </tr>
+</table>
+
+<p>
+    <a href="{% url 'app:event_update' event.pk %}">更新</a> /
+    <a href="{% url 'app:event_delete' event.pk %}">削除</a>
+</p>
+
+<p>
+    <a href="{% url 'app:deck_create' event.pk %}">デッキリスト登録</a> /
+    <a href="{% url 'app:deck_list' event.pk %}">デッキリスト閲覧</a>
+</p>
+{% endblock %}

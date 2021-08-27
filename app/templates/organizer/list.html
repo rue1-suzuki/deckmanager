@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h2>主催者リスト</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>主催者名</th>
+    </tr>
+    {% for organizer in organizer_list %}
+    <tr>
+        <td>{{ organizer.id }}</td>
+        <td>
+            <a href="{% url 'app:organizer_detail' organizer.pk %}">
+                {{ organizer.username }}
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

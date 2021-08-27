@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+<h2>受付中のイベント</h2>
+<table class="table table-striped">
+    <tr>
+        <th>開催日</th>
+        <th>イベント名</th>
+    </tr>
+    {% for event in event_list %}
+    {% if event.is_active %}
+    <tr>
+        <td>{{ event.date }}</td>
+        <td>
+            <a href="{% url 'app:event_detail' event.pk %}">
+                {{ event.title }}
+            </a>
+        </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+
+<h2>終了したイベント</h2>
+<table class="table table-striped">
+    <tr>
+        <th>開催日</th>
+        <th>イベント名</th>
+    </tr>
+    {% for event in event_list %}
+    {% if not event.is_active %}
+    <tr>
+        <td>{{ event.date }}</td>
+        <td>
+            <a href="{% url 'app:event_detail' event.pk %}">
+                {{ event.title }}
+            </a>
+        </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+
+{% endblock %}

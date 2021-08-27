@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h2>{{ organizer.username }}さんの詳細</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>主催者ID</th>
+        <td>{{ organizer.id }}</td>
+    </tr>
+    <tr>
+        <th>ハンドルネーム</th>
+        <td>{{ organizer.username }}</td>
+    </tr>
+    <tr>
+        <th>登録日時</th>
+        <td>
+            {{ organizer.date_joined | date }}<br>
+            {{ organizer.date_joined | time }}
+        </td>
+    </tr>
+</table>
+
+<p>
+    <a href="{% url 'app:organizer_update' organizer.pk %}">更新</a> /
+    <a href="{% url 'app:organizer_delete' organizer.pk %}">削除</a>
+</p>
+
+<p>
+    <a href="{% url 'logout' %}">ログアウトする</a>
+</p>
+{% endblock %}

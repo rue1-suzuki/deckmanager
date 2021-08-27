@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h2>主催者登録</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="登録する" class="btn btn-primary mx-auto d-block">
+</form>
+{% endblock %}

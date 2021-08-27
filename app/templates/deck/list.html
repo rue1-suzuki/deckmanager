@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h2>{{ event.title }}</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>主催者</th>
+        <td>{{ event.organizer.username }}</td>
+    </tr>
+    <tr>
+        <th>開催日</th>
+        <td>{{ event.date }}</td>
+    </tr>
+    <tr>
+        <th>状態</th>
+        <td>{{ event.get_is_active_display }}</td>
+    </tr>
+</table>
+
+<h2>登録デッキリスト</h2>
+
+<p>デッキ画像タップで詳細</p>
+
+<table class="table table-striped">
+    <tr>
+        <th>識別番号</th>
+        <th>ハンドルネーム</th>
+        <th>デッキ画像</th>
+        <th>日時</th>
+        <th>備考</th>
+    </tr>
+    {% for deck in deck_list %}
+    <tr>
+        <td>{{ deck.number }}</td>
+        <td>{{ deck.name | truncatechars:16 }}</td>
+        <td>
+            <p>
+                <a href="{% url 'app:deck_detail' deck.event.uuid deck.pk %}">
+                    <img class="mw-100" src="{{ deck.image.url }}" />
+                </a>
+            </p>
+        </td>
+        <td>
+            {{ deck.updated_at | date }}<br>
+            {{ deck.updated_at | time }}
+        </td>
+        <td>{{ deck.remark | truncatechars:8 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

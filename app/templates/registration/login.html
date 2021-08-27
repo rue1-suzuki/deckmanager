@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h2>login</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="ログインする" class="btn btn-primary mx-auto d-block">
+</form>
+{% endblock %}

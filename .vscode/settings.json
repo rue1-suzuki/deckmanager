@@ -1,0 +1,19 @@
+{
+    "files.exclude": {
+        // "**/media/": true,
+        "**/manage.py": true,
+        "**/db.sqlite3": true,
+        "**/__init__.py": true,
+        "**/__pycache__/": true,
+        // git
+        "**/.gitignore": true,
+        // app
+        "**/app/apps.py": true,
+        "**/app/admin.py": true,
+        "**/app/tests.py": true,
+        "**/app/migrations/": true,
+        // project
+        "**/project/asgi.py": true,
+        "**/project/wsgi.py": true,
+    }
+}

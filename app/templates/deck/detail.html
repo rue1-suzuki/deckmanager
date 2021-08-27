@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h2>{{ deck.number }}「{{ deck.name }}」さん のデッキリスト</h2>
+
+<a href="{{ deck.image.url }}">
+    <img class="mw-100" src="{{ deck.image.url }}" />
+</a>
+
+<h2>詳細データ</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>イベント</th>
+        <td>
+            {{ deck.event.date }}<br>
+            {{ deck.event.title }}
+        </td>
+    </tr>
+    <tr>
+        <th>備考</th>
+        <td>{{ deck.remark }}</td>
+    </tr>
+    <tr>
+        <th>作成日時</th>
+        <td>{{ deck.created_at }}</td>
+    </tr>
+    <tr>
+        <th>更新日時</th>
+        <td>{{ deck.updated_at }}</td>
+    </tr>
+</table>
+
+<p>
+    <a href="{% url 'app:deck_update' deck.event.uuid deck.pk %}">更新</a> /
+    <a href="{% url 'app:deck_delete' deck.event.uuid deck.pk %}">削除</a>
+</p>
+{% endblock %}
